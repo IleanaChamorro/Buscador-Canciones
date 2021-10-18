@@ -12,7 +12,8 @@ const BuscadorCanciones = () => {
     //Manejador evento submit form
 
     const handleSearch = (data) => {
-        console.log(data);
+        //console.log(data);
+        setBuscador(data);
     }
     return (
         <div>
