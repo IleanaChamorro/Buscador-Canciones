@@ -53,12 +53,14 @@ const BuscadorCanciones = () => {
             {/*Solo se muestra cuando su valor cambia a true */}
             {cargador && <Loader/>}
             <CancionForm handleSearch={handleSearch}/>
-            {/*Envio Datos Cancion */}
+            {/*Mientras Search tenga datos no debe mostrarse y Loading este en falso, renderiza los detalles de la cancion*/}
+            {buscador && !cargador && (
             <CancionDetalles
             buscador={buscador}
             letra={letra}
             bio={bio}
             />
+            )}
         </div>
     )
 }
