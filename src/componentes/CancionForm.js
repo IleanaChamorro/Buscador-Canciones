@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 const initialForm = {
-    artista: "",
-    cancion:"",
+    artist: "",
+    song:"",
 }  
 
 const CancionForm = ({handleSearch}) => {
@@ -21,7 +21,7 @@ const CancionForm = ({handleSearch}) => {
         e.preventDefault();
 
         //En caso de que los forms esten vacios se envia una alerta al usuario
-        if(!form.artista || !form.cancion){
+        if(!form.artist || !form.song){
             alert("Datos Incompletos");
             return;
         }
@@ -30,23 +30,28 @@ const CancionForm = ({handleSearch}) => {
         setForm(initialForm);
     };
     return (
-        <div>
+        <div className="container">
             <form onSubmit={handleSubmit}>
+                <div className="formgroup">
                 <input 
+                className="form-control"
                 type="text" 
-                name="artista" 
-                placeholder="Nombre del interprete" 
+                name="artist" 
                 onChange={handleChange} 
-                value={form.artista}
+                value={form.artist}
                 />
-                <input 
+                <label for="artist" className="form-label">Nombre del interprete</label>
+                <input
+                className="form-control"
                 type="text" 
-                name="cancion" 
-                placeholder="Nombre de la cancion" 
+                name="song" 
+                placeholder="Nombre de la song" 
                 onChange={handleChange}
-                value={form.cancion}
+                value={form.song}
                 />
+                <label for="artist" className="form-label">Nombre de la canción</label>
                 <input type="submit" value="Enviar"/>
+                </div>
             </form>
         </div>
     )

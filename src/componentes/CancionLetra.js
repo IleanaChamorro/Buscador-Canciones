@@ -1,8 +1,9 @@
-const CancionLetra = () => {
+const CancionLetra = ({title, lyrics}) => {
     return (
-        <div>
-            <h4>Letra de la Cancion</h4>
-        </div>
+        <section className="form-lyrics">
+            <h3>{title}</h3>
+            <blockquote style={{whiteSpace:"pre-wrap"}}>{lyrics}</blockquote>
+        </section>
     )
 }
 

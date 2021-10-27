@@ -2,27 +2,27 @@ import CancionArtista from "./CancionArtista"
 import CancionLetra from "./CancionLetra"
 import Mensaje from "./Mensaje"
 
-const CancionDetalles = ({buscador, letra, bio}) => {
-    //Mientras letra o bio no traigan datos, retorna nulo
-    if(!letra || !bio) return null;
+const CancionDetalles = ({buscador, lyric, bio}) => {
+    //Mientras lyric o bio no traigan datos, retorna nulo
+    if(!lyric || !bio) return null;
     return (
         <>
-            {/*Manejo de errores en caso de no existir la cancion */}
-            {letra.error || letra.err || letra.name === "AbortError" ? (
+            {/*Manejo de errores en caso de no existir la song */}
+            {lyric.error || lyric.err || lyric.name === "AbortError" ? (
             <Mensaje 
-            msg={`Error: no existe la cancion ${buscador.song}`}
+            msg={`Error no existe la canción ${buscador.song}`} 
             bgColor="#dc3545"
             /> 
             ):( 
-                <CancionLetra/>
+            <CancionLetra title={buscador.song} lyrics={lyric.lyrics}/>
             )}
             {bio.artists ? (
-                <CancionArtista/>
-            ) : (
+            <CancionArtista artist={bio.artists[0]}/>
+            ):( 
             <Mensaje
-                msg={`Error: no existe el artista ${buscador.artists}`}
-                bgColor="#dc3545"
-                />
+            msg={`Error no existe el interprete ${buscador.artist}`} 
+            bgColor="#dc3545"
+            />
             )}
         </>
     );

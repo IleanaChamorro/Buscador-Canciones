@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { helpHttp } from '../helper/helpHttp';
+import Loader from './Loader';
 import CancionDetalles from './CancionDetalles';
 import CancionForm from './CancionForm';
-import Loader from './Loader';
 
-const BuscadorCanciones = () => {
+const Buscadorcanciones = () => {
     const [buscador, setBuscador] = useState(null);
-    const [letra, setLetra] = useState(null);
+    const [lyric, setlyric] = useState(null);
     const [bio, setBio] = useState(null);
     const [cargador, setCargador] = useState(false);
 
@@ -16,26 +16,26 @@ const BuscadorCanciones = () => {
 
         const fetchData = async () => {
             //Destructuracion propiedades de buscador
-            const {artista, cancion} = buscador;
+            const {artist, song} = buscador;
          
-            //Obtencion Informacion de Artista y Cancion
-            let artistaUrl =  `theaudiodb.com/api/v1/json/1/search.php?s=${artista}`;
-            let cancionUrl = `https://api.lyrics.ovh/v1/${artista}/${cancion}`;
+            //Obtencion Informacion de artist y song
+            let artistUrl =  `https://theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
+            let songUrl = `https://api.lyrics.ovh/v1/${artist}/${song}`;
         
-            console.log(artistaUrl, cancionUrl);
+            //console.log(artistUrl, songUrl);
 
             //Loader espera a respuesta peticion 
             setCargador(true);
 
-            const [artistaRes, cancionRes] = await Promise.all([
-                helpHttp().get(artistaUrl),
-                helpHttp().get(cancionUrl),
+            const [artistRes, songRes] = await Promise.all([
+                helpHttp().get(artistUrl),
+                helpHttp().get(songUrl),
             ]);
 
-            console.log(artistaRes, cancionRes);
-
-            setBio(artistaRes);
-            setLetra(cancionRes);
+            //console.log(artistRes, songRes);
+            
+            setBio(artistRes);
+            setlyric(songRes);
             setCargador(false);
         };
         fetchData();
@@ -49,20 +49,22 @@ const BuscadorCanciones = () => {
     };
     return (
         <div>
-            <h2>Buscador canciones</h2>
+            <h2>¡Busca una canción!</h2>
+            <article className="grid-1-3">
             {/*Solo se muestra cuando su valor cambia a true */}
             {cargador && <Loader/>}
             <CancionForm handleSearch={handleSearch}/>
-            {/*Mientras Search tenga datos no debe mostrarse y Loading este en falso, renderiza los detalles de la cancion*/}
+            {/*Mientras Search tenga datos no debe mostrarse y Loading este en falso, renderiza los detalles de la song*/}
             {buscador && !cargador && (
             <CancionDetalles
             buscador={buscador}
-            letra={letra}
+            lyric={lyric}
             bio={bio}
             />
             )}
+            </article>
         </div>
     )
 }
 
-export default BuscadorCanciones
+export default Buscadorcanciones

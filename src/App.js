@@ -1,10 +1,10 @@
-import './App.css';
-import BuscadorCanciones from './componentes/BuscadorCanciones';
+
+import Buscadorcanciones from './componentes/Buscadorcanciones';
 
 function App() {
   return (
     <div className="App">
-      <BuscadorCanciones/>
+      <Buscadorcanciones/>
     </div>
   );
 }
