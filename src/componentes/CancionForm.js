@@ -33,23 +33,24 @@ const CancionForm = ({handleSearch}) => {
         <div className="container">
             <form onSubmit={handleSubmit}>
                 <div className="formgroup">
+                    <label for="artist" className="form-label">Nombre del interprete</label>
                 <input 
                 className="form-control"
                 type="text" 
                 name="artist" 
+                placeholder="Nirvana" 
                 onChange={handleChange} 
                 value={form.artist}
                 />
-                <label for="artist" className="form-label">Nombre del interprete</label>
+                <label for="artist" className="form-label">Nombre de la Canción</label>
                 <input
                 className="form-control"
                 type="text" 
                 name="song" 
-                placeholder="Nombre de la song" 
+                placeholder="The man who sold the world" 
                 onChange={handleChange}
                 value={form.song}
                 />
-                <label for="artist" className="form-label">Nombre de la canción</label>
                 <input type="submit" value="Enviar"/>
                 </div>
             </form>
